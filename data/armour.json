@@ -1,25 +1,21 @@
 {
-    "Wooden helmet": {"Protection": 1.02, "Rate": 25, "Slot": 1, "Value": 10},
-    "Wooden chestplate": {"Protection": 1.025, "Rate": 25, "Slot": 2, "Value": 20},
-    "Wooden leggings": {"Protection": 1.02, "Rate": 25, "Slot": 3, "Value": 20},
-
-    "Copper helmet": {"Protection": 1.06, "Rate": 20, "Slot": 1, "Value": 40},
-    "Copper chestplate": {"Protection": 1.065, "Rate": 20, "Slot": 2, "Value": 50},
-    "Copper leggings": {"Protection": 1.06, "Rate": 20, "Slot": 3, "Value": 50},
-
-    "Gold helmet": {"Protection": 1.05, "Rate": 15, "Slot": 1, "Value": 90},
-    "Gold chestplate": {"Protection": 1.055, "Rate": 15, "Slot": 2, "Value": 100},
-    "Gold leggings": {"Protection": 1.05, "Rate": 15, "Slot": 3, "Value": 100},
-
-    "Iron helmet": {"Protection": 1.1, "Rate": 10, "Slot": 1, "Value": 30},
-    "Iron chestplate": {"Protection": 1.12, "Rate": 10, "Slot": 2, "Value": 40},
-    "Iron leggings": {"Protection": 1.1, "Rate": 10, "Slot": 3, "Value": 40},
-
-    "Diamond helmet": {"Protection": 1.15, "Rate": 5, "Slot": 1, "Value": 340},
-    "Diamond chestplate": {"Protection": 1.15, "Rate": 5, "Slot": 2, "Value": 460},
-    "Diamond leggings": {"Protection": 1.15, "Rate": 5, "Slot": 3, "Value": 460},
-
-    "Netherite helmet": {"Protection": 1.25, "Rate": 5, "Slot": 1, "Value": 520},
-    "Netherite chestplate": {"Protection": 1.25, "Rate": 5, "Slot": 2, "Value": 760},
-    "Netherite leggings": {"Protection": 1.25, "Rate": 5, "Slot": 3, "Value": 760}
+    "Helmet": {
+        "Protection": 1.02,
+        "Rate": 34,
+        "Slot": 1,
+        "Value": 10
+    },
+    "Chestplate": {
+        "Protection": 1.025,
+        "Rate": 33, 
+        "Slot": 2, 
+        "Value": 20
+    },
+    "Leggings": 
+    {
+    "Protection": 1.02, 
+    "Rate": 33, 
+    "Slot": 3, 
+    "Value": 20
+    }
 }

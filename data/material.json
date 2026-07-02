@@ -1,0 +1,37 @@
+{
+  "Wooden": {
+    "Buff": 1.02,
+    "Rate": 39,
+    "Value": 50
+  },
+  "Copper": {
+    "Buff": 1.06,
+    "Rate": 25,
+    "Value": 140
+  },
+  "Gold": {
+    "Buff": 1.05,
+    "Rate": 15,
+    "Value": 290
+  },
+  "Iron": {
+    "Buff": 1.1,
+    "Rate": 17.5,
+    "Value": 110
+  },
+  "Diamond": {
+    "Buff": 1.15,
+    "Rate": 2.5,
+    "Value": 1260
+  },
+  "Netherite": {
+    "Buff": 1.25,
+    "Rate": 1,
+    "Value": 2040
+  },
+  "Enderite": {
+    "Buff": 1.33,
+    "Rate": 0.1,
+    "Value": 20400
+  }
+}
