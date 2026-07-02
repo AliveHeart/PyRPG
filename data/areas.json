@@ -1,0 +1,25 @@
+{
+    "Town": {
+        "description": "A peaceful town.",
+        "connections": [
+            "Forest",
+            "Home"
+        ],
+        "entities": [
+            "Merchant"
+        ]
+    },
+
+    "Forest": {
+        "description": "A dark forest.",
+        "connections": [
+            "Town",
+            "Lake",
+            "Cave"
+        ],
+        "entities": [
+            "Goblin",
+            "Wolfs"
+        ]
+    }
+}

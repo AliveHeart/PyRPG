@@ -1,0 +1,19 @@
+{
+    "Mom": {
+        "type": "npc",
+        "hp": 100,
+        "hostile": false
+    },
+
+    "Merchant": {
+        "type": "merchant",
+        "hp": 100,
+        "hostile": false
+    },
+
+    "Goblin": {
+        "type": "enemy",
+        "hp": 40,
+        "hostile": true
+    }
+}
