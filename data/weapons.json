@@ -1,7 +1,27 @@
 {
-    "Katana": {"dmg": 5, "spd": 8, "rate": 20},
-    "Hammer": {"dmg": 10, "spd": 4, "rate": 20},
-    "Axe": {"dmg": 13, "spd": 2, "rate": 20},
-    "Dagger": {"dmg": 3, "spd": 10, "rate": 20},
-    "Sword": {"dmg": 7, "spd": 6, "rate": 20}
+    "Katana": {
+    "dmg": 5, 
+    "spd": 8, 
+    "rate": 20
+    },
+    "Hammer": {
+    "dmg": 10, 
+    "spd": 4, 
+    "rate": 20
+    },
+    "Axe": {
+    "dmg": 13, 
+    "spd": 2, 
+    "rate": 20
+    },
+    "Dagger": {
+    "dmg": 3, 
+    "spd": 10, 
+    "rate": 20
+    },
+    "Sword": {
+    "dmg": 7, 
+    "spd": 6, 
+    "rate": 20
+    }
 }

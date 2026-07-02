@@ -21,5 +21,15 @@
             "Goblin",
             "Wolfs"
         ]
+    },
+
+    "Home": {
+        "description": "Home sweet home.",
+        "connections": [
+            "Town"
+        ],
+        "entities": [
+            "Mom"
+        ]
     }
 }
