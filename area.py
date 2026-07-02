@@ -1,6 +1,7 @@
 
 class Area:
-    def __init__(self, name, connections):
+    def __init__(self, name):
         self.name = name
-        self.connections = connections
+        self.connections = []
+        self.description = ""
         self.entities = []
