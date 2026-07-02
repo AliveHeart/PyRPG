@@ -31,5 +31,25 @@
         "entities": [
             "Mom"
         ]
+    },
+
+    
+    "Lake": {
+        "description": "A beautiful lake.",
+        "connections": [
+            "Forest"
+        ],
+        "entities": [
+        ]
+    },
+
+    "Cave": {
+        "description": "A mysterious cave.",
+        "connections": [
+            "Forest"
+        ],
+        "entities": [
+            "Goblin"
+        ]
     }
 }
