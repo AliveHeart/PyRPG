@@ -19,9 +19,13 @@ class World:
                 area.connections.append(
                     connection
                 )
+            for entities in data["entities"]:
+                area.entities.append(
+                    entities
+                )
             area.description = data["description"]
 
-        for entity_name, data in entities.items():
-            entity_data = data
-            entity = Entity(entity_name, entity_data["type"], entity_data["hp"], entity_data["hostile"])
-            area.entities.append(entity)
+            #for entity_name, data in entities.items():
+                #entity_data = data
+                #entity = Entity(entity_name, entity_data["type"], entity_data["hp"], entity_data["hostile"], entity_data["str"], entity_data["spd"], entity_data["exp"])
+                #area.entities.append(entity)
