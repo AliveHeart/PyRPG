@@ -3,6 +3,9 @@
         "name": "Mom",
         "type": "npc",
         "hp": 100,
+        "spd": 6,
+        "str": 2,
+        "exp": 1,
         "hostile": false
     },
 
@@ -10,6 +13,9 @@
         "name": "Merchant",
         "type": "merchant",
         "hp": 100,
+        "spd": 10,
+        "str": 10,
+        "exp": 100,
         "hostile": false
     },
 
@@ -17,6 +23,39 @@
         "name": "Goblin",
         "type": "enemy",
         "hp": 40,
+        "spd": 7,
+        "str": 4,
+        "exp": 7,
         "hostile": true
+    },
+
+    "Ogre": {
+        "name": "Ogre",
+        "type": "enemy",
+        "hp": 120,
+        "spd": 4,
+        "str": 7,
+        "exp": 10,
+        "hostile": true
+    },
+
+    "Wolf": {
+        "name": "Wolf",
+        "type": "enemy",
+        "hp": 60,
+        "spd": 8,
+        "str": 5,
+        "exp": 10,
+        "hostile": true
+    },
+
+    "Farmer": {
+        "name": "Farmer",
+        "type": "npc",
+        "hp": 40,
+        "spd": 5,
+        "str": 3,
+        "exp": 1,
+        "hostile": false
     }
 }
