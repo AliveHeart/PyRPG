@@ -15,7 +15,8 @@
         "connections": [
             "Town",
             "Lake",
-            "Cave"
+            "Cave",
+            "Small-village"
         ],
         "entities": [
             "Goblin",
@@ -46,10 +47,34 @@
     "Cave": {
         "description": "A mysterious cave.",
         "connections": [
-            "Forest"
+            "Forest",
+            "Small-village",
+            "Deeper"
         ],
         "entities": [
             "Goblin"
+        ]
+    },
+
+    "Deeper": {
+        "description": "A dark cave.",
+        "connections": [
+            "Cave"
+        ],
+        "entities": [
+            "Goblin",
+            "Ogre"
+        ]
+    },
+
+    "Small-village": {
+        "description": "A small village.",
+        "connections": [
+            "Forest",
+            "Cave"
+        ],
+        "entities": [
+            "Farmer"
         ]
     }
 }
