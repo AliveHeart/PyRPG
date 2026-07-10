@@ -56,7 +56,8 @@ def execute(game, string):
         if action == "attack":
             condition = combat.attack(game)
 
-            renderer.render(condition)
+            renderer.render(condition[0])
+            renderer.render(condition[1])
 
 
 
