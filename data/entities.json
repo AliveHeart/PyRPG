@@ -6,7 +6,10 @@
         "spd": 6,
         "str": 2,
         "exp": 1,
-        "hostile": false
+        "hostile": false,
+        "coward": 95,
+        "arrogance": 0,
+        "defensive": 5
     },
 
     "Merchant": {
@@ -16,7 +19,10 @@
         "spd": 10,
         "str": 10,
         "exp": 100,
-        "hostile": false
+        "hostile": false,
+        "coward": 30,
+        "arrogance": 20,
+        "defensive": 50
     },
 
     "Goblin": {
@@ -26,7 +32,10 @@
         "spd": 7,
         "str": 4,
         "exp": 7,
-        "hostile": true
+        "hostile": true,
+        "coward": 60,
+        "arrogance": 30,
+        "defensive": 10
     },
 
     "Ogre": {
@@ -36,7 +45,10 @@
         "spd": 4,
         "str": 7,
         "exp": 10,
-        "hostile": true
+        "hostile": true,
+        "coward": 10,
+        "arrogance": 80,
+        "defensive": 10
     },
 
     "Wolf": {
@@ -46,7 +58,10 @@
         "spd": 8,
         "str": 5,
         "exp": 10,
-        "hostile": true
+        "hostile": true,
+        "coward": 5,
+        "arrogance": 20,
+        "defensive": 80
     },
 
     "Farmer": {
@@ -56,6 +71,9 @@
         "spd": 5,
         "str": 3,
         "exp": 1,
-        "hostile": false
+        "hostile": false,
+        "coward": 100,
+        "arrogance": 0,
+        "defensive": 0
     }
 }
