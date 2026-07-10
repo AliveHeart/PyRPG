@@ -8,6 +8,7 @@ class World:
         entities = load_json("data/entities.json")
 
         self.areas = {}
+        self.entities = {}
 
         for name in areas:
             area = Area(name)
@@ -19,13 +20,13 @@ class World:
                 area.connections.append(
                     connection
                 )
-            for entities in data["entities"]:
+            for entitie in data["entities"]:
                 area.entities.append(
-                    entities
+                    entitie
                 )
             area.description = data["description"]
 
-            #for entity_name, data in entities.items():
-                #entity_data = data
-                #entity = Entity(entity_name, entity_data["type"], entity_data["hp"], entity_data["hostile"], entity_data["str"], entity_data["spd"], entity_data["exp"])
-                #area.entities.append(entity)
+        for entity_name, data in entities.items():
+            entity_data = data
+            entity = Entity(entity_name, entity_data["type"], entity_data["hp"], entity_data["hostile"], entity_data["str"], entity_data["spd"], entity_data["exp"])
+            self.entities[entity_name] = entity
