@@ -11,6 +11,10 @@ class Entity :
         self.spd = spd
         self.exp = exp
 
+        self.arrogance = 0
+        self.defensive = 0
+        self.cowardness = 0
+
         self.type = type
 
         self.str = 1
