@@ -1,4 +1,4 @@
-import commands, player, world
+import commands, player, world, renderer
 
 class Game:
     def __init__(self):
@@ -6,11 +6,13 @@ class Game:
 
         self.player = player.Player()
         self.world = world.World()
+        
         self.running = True
         
     def run(self):
         while self.running:
             command = input("> ")
+
             commands.execute(
                 self,
                 command,
