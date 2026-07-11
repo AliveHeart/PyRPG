@@ -53,11 +53,20 @@ def execute(game, string):
                 renderer.render("You are in combat with a " + game.player.enemy + ". ")
                 renderer.render("Actions : -> attack -> defend -> run -> surrender")
     else:
-        if action == "attack":
-            condition = combat.attack(game)
+        if game.player.enemy != "air":
+            if action == "attack":
+                enemy = game.world.entities[game.player.enemy]
+                condition = combat.attack(game)
 
-            renderer.render(condition[0])
-            renderer.render(condition[1])
+                renderer.render(condition[0])
+                renderer.render(condition[1])
+
+                if game.player.health > 0 and game.player.enemy != "air":
+                    renderer.render("You are in combat with a " + game.player.enemy + ". ")
+                    renderer.render("Your health :- " + str(game.player.health) + "HP. " + game.player.enemy + " health :- " + str(enemy.health) + "HP.")
+                    renderer.render("Actions : -> attack -> defend -> run -> surrender")
+                
+        
 
 
 
