@@ -28,20 +28,24 @@ def enemy_descision(enemy, player):
         attack_weightage -= 40
         surrender_weightage += 20
 
-    if player.health < (player.max_health * 0.3):
+    if player.health < (player.max_health * 0.5):
         attack_weightage += 30
         defend_weightage -= 15
         surrender_weightage -= 15
+
+    if player.str <= (enemy.str + enemy.endur):
+        surrender_weightage -= 20
+        defend_weightage -= 20
+        attack_weightage += 40
 
     attack_weightage = max(0, attack_weightage)
     defend_weightage = max(0, defend_weightage)
     surrender_weightage = max(0, surrender_weightage)
 
     weightage_list = {"attack": attack_weightage, "defend": defend_weightage, "surrender": surrender_weightage}
-    descision = randomer(weightage_list)
+    descision = randomer.weighted_choice(weightage_list)
     
-    if descision == "attack" :
-        return enemy_attack(enemy, player)
+    return descision
 
 
 def attack(game):
@@ -52,16 +56,32 @@ def attack(game):
 
     enemy_spd = enemy.spd
 
-    plr_feedback = " "
-    if chance_roll(enemy_spd, plr_speed):
-        plr_feedback = ("The " + enemy.name + " dodges your attack!")
-    else:
-        enemy.health -= plr_damage
-        plr_feedback = ("You hit the " + enemy.name + " and deal " + str(plr_damage) + " damage!")
+    descision = enemy_descision(enemy, game.player)
+    enemy_feedback = "The Goblin"
     
-    enemy_feedback = enemy_descision(enemy, game.player)
+    plr_feedback = " "
+    if descision != "defend":
+        if chance_roll(enemy_spd, plr_speed):
+            plr_feedback = "The " + enemy.name + " dodges your attack!"
+        else:
+            enemy.health -= plr_damage
+            plr_feedback = "You hit the " + enemy.name + " and deal " + str(plr_damage) + " damage!"
+    else:
+        plr_feedback = "The " + enemy.name + " defends!"
+        if (game.player.str * game.player.endur) > (enemy.str * enemy.endur):
+            enemy_feedback = "You hit the " + enemy.name + " but the " + enemy.name + " blocks the attack. You deal " + str(plr_damage) + " damage!"
+        else:
+            enemy_feedback = "You hit the " + enemy.name + " but the " + enemy.name + " blocks the attack."
+    
+
+    if descision == "attack" :
+        enemy_feedback = enemy_attack(enemy, game.player)
+    elif descision == "surrender":
+        enemy.surrendered = True
+        enemy_feedback = "The " + enemy.name + " has surrendered."
+
+    if enemy.health <= 0:
+        game.player.in_combat = False
+        game.player.enemy = "air"
 
     return [plr_feedback, enemy_feedback]
-
-
-    
