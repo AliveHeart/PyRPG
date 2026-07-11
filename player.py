@@ -1,16 +1,17 @@
 
 class Player :
     def __init__(self):
-
+        self.userID = 0
+        
         self.health = 100
         self.max_health = 100
         self.luck = 0
 
         self.current_location = "Town"
 
-        self.str = 1
+        self.str = 3
         self.spd = 3
-        self.endur = 1
+        self.endur = 3
         self.money = 100
 
         self.weapon = "fist"
