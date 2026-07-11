@@ -30,11 +30,11 @@
         "type": "enemy",
         "hp": 40,
         "spd": 7,
-        "str": 4,
+        "str": 2,
         "exp": 7,
         "hostile": true,
-        "coward": 60,
-        "arrogance": 30,
+        "coward": 40,
+        "arrogance": 50,
         "defensive": 10
     },
 
