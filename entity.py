@@ -15,9 +15,8 @@ class Entity :
         self.defensive = 0
         self.cowardness = 0
 
+        self.surrendered = False
         self.type = type
 
-        self.str = 1
-        self.spd = 1
-        self.endur = 1
+        self.endur = str * spd
         self.money = 100
