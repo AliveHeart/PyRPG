@@ -20,4 +20,3 @@ class Game:
 
 game = Game()
 game.run()
-        
