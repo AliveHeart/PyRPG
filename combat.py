@@ -42,13 +42,14 @@ def enemy_descision(enemy, player):
     defend_weightage = max(0, defend_weightage)
     surrender_weightage = max(0, surrender_weightage)
 
-    weightage_list = {"attack": attack_weightage, "defend": defend_weightage, "surrender": surrender_weightage}
+    weightage_list = {"attack": attack_weightage, 
+                      "defend": defend_weightage, 
+                      "surrender": surrender_weightage}
     descision = randomer.weighted_choice(weightage_list)
     
     return descision
 
-
-def attack(game):
+def attack(game, descision):
     enemy = game.world.entities[game.player.enemy]
 
     plr_damage = game.player.str * game.player.weapon_dmg
@@ -56,10 +57,8 @@ def attack(game):
 
     enemy_spd = enemy.spd
 
-    descision = enemy_descision(enemy, game.player)
-    enemy_feedback = "The Goblin"
-    
     plr_feedback = " "
+    enemy_feedback = " "
     if descision != "defend":
         if chance_roll(enemy_spd, plr_speed):
             plr_feedback = "The " + enemy.name + " dodges your attack!"
@@ -80,8 +79,33 @@ def attack(game):
         enemy.surrendered = True
         enemy_feedback = "The " + enemy.name + " has surrendered."
 
+    return [plr_feedback, enemy_feedback]
+    
+
+def act(action, game):
+    enemy = game.world.entities[game.player.enemy]
+
+    descision = enemy_descision(enemy, game.player)
+    
+    condition = []
+    if action == "attack":
+        condition = attack(game, descision)
+    if action == "run":
+        can_run = chance_roll(enemy.spd, game.player.spd)
+        condition.append("You try to run away.")
+        if can_run:
+            game.player.in_combat = False
+            game.player.enemy = "air"
+
+            condition.append("You managed to escape the " + enemy.name + ". ")
+        else:
+            condition.append(enemy_attack(enemy, game.player))
+
+
     if enemy.health <= 0:
         game.player.in_combat = False
         game.player.enemy = "air"
 
-    return [plr_feedback, enemy_feedback]
+        return ["The " + enemy.name + " has fallen", "+ " + str(random.randint(1, 5) * enemy.str * enemy.endur) + " xp"]
+
+    return condition
