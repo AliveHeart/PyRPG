@@ -7,8 +7,8 @@
         "str": 2,
         "exp": 1,
         "hostile": false,
-        "coward": 95,
-        "arrogance": 0,
+        "coward": 100,
+        "arrogance": -30,
         "defensive": 5
     },
 
