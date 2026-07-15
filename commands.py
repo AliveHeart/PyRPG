@@ -52,6 +52,18 @@ def execute(game, string):
 
                 renderer.render("You are in combat with a " + game.player.enemy + ". ")
                 renderer.render("Actions : -> attack -> defend -> run -> surrender")
+        elif game.player.enemy != "air":
+            if action == "kill":
+                returnState = combat.kill(game)
+                renderer.render(returnState[0])
+                renderer.render(returnState[1])
+            elif action == "spare":
+                returnState = combat.spare(game)
+                renderer.render(returnState[0])
+                renderer.render(returnState[1])
+        elif game.player.enemy != "air":
+            game.player.enemy = "air"
+
     else:
         if game.player.enemy != "air":
             enemy = game.world.entities[game.player.enemy]
@@ -60,10 +72,14 @@ def execute(game, string):
             renderer.render(condition[0])
             renderer.render(condition[1])
 
-            if game.player.health > 0 and game.player.enemy != "air":
+            if game.player.health > 0 and game.player.enemy != "air" and game.player.in_combat == True:
                 renderer.render("You are in combat with a " + game.player.enemy + ". ")
                 renderer.render("Your health :- " + str(game.player.health) + "HP. " + game.player.enemy + " health :- " + str(enemy.health) + "HP.")
-                renderer.render("Actions : -> attack -> defend -> run -> surrender")
+                renderer.render("Actions : -> attack | -> defend | -> run | -> surrender")
+
+    can_lvl = game.player.LevelUP()
+    if can_lvl:
+        renderer.render("You leveled up to " + str(game.player.lvl) + "!")
                 
         
 
