@@ -11,7 +11,7 @@
         "arrogance": -80,
         "defensive": 5,
 
-        "honor-gain": -100
+        "honor": -100
     },
 
     "Merchant": {
@@ -26,7 +26,7 @@
         "arrogance": 20,
         "defensive": 50,
 
-        "honor-gain": -10
+        "honor": -10
     },
 
     "Goblin": {
@@ -41,7 +41,7 @@
         "arrogance": 50,
         "defensive": 10,
 
-        "honor-gain": 5
+        "honor": 5
     },
 
     "Ogre": {
@@ -56,7 +56,7 @@
         "arrogance": 80,
         "defensive": 10,
 
-        "honor-gain": 10
+        "honor": 10
     },
 
     "Wolf": {
@@ -71,7 +71,7 @@
         "arrogance": 20,
         "defensive": 80,
 
-        "honor-gain": 8
+        "honor": 8
     },
 
     "Farmer": {
@@ -86,6 +86,6 @@
         "arrogance": 0,
         "defensive": 0,
 
-        "honor-gain": -10
+        "honor": -10
     }
 }
