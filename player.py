@@ -7,6 +7,9 @@ class Player :
         self.max_health = 100
         self.luck = 0
 
+        self.xp = 0
+        self.lvl = 1
+
         self.current_location = "Town"
 
         self.str = 3
@@ -27,3 +30,11 @@ class Player :
         self.helmet = 0
         self.chestplate = 0
         self.leggings = 0
+    
+    def LevelUP(self):
+        if self.xp >= (self.lvl**2) * 10:
+            self.xp = 0
+            self.lvl += 1
+
+            return True
+        return False
