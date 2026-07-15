@@ -2,90 +2,121 @@
     "Mom": {
         "name": "Mom",
         "type": "npc",
+
         "hp": 100,
         "spd": 6,
         "str": 2,
         "exp": 1,
+
         "hostile": false,
+
         "coward": 100,
         "arrogance": -80,
         "defensive": 5,
 
-        "honor": -100
+        "honor": -100,
+        "money": 100,
+
+        "inventory": ["Kitchen-Knife"]
     },
 
     "Merchant": {
         "name": "Merchant",
         "type": "merchant",
+
         "hp": 100,
         "spd": 10,
         "str": 10,
         "exp": 100,
+
         "hostile": false,
+
         "coward": 30,
         "arrogance": 20,
         "defensive": 50,
 
-        "honor": -10
+        "honor": -10,
+        "money": 1000,
+        "inventory": ["Rusty Iron Sword"]
     },
 
     "Goblin": {
         "name": "Goblin",
         "type": "enemy",
+
         "hp": 40,
         "spd": 7,
         "str": 2,
         "exp": 7,
+
         "hostile": true,
+
         "coward": 40,
         "arrogance": 50,
         "defensive": 10,
 
-        "honor": 5
+        "honor": 5,
+        "money": 20,
+        "inventory": ["Apple", "Pink-Panties", "Pink-Bra"]
     },
 
     "Ogre": {
         "name": "Ogre",
         "type": "enemy",
+
         "hp": 120,
         "spd": 4,
         "str": 7,
         "exp": 10,
+
         "hostile": true,
+
         "coward": 10,
         "arrogance": 80,
         "defensive": 10,
 
-        "honor": 10
+        "honor": 10,
+        "money": 10,
+        "inventory": ["Mace"]
     },
 
     "Wolf": {
         "name": "Wolf",
         "type": "enemy",
+
         "hp": 60,
         "spd": 8,
         "str": 5,
         "exp": 10,
+
         "hostile": true,
+
         "coward": 5,
         "arrogance": 20,
         "defensive": 80,
 
-        "honor": 8
+        "honor": 8,
+        "money": 0,
+        "inventory": []
     },
 
     "Farmer": {
         "name": "Farmer",
         "type": "npc",
+
         "hp": 40,
         "spd": 5,
         "str": 3,
         "exp": 1,
+
         "hostile": false,
+
         "coward": 100,
         "arrogance": 0,
         "defensive": 0,
 
-        "honor": -10
+        "honor": -10,
+        "money": 70,
+        "inventory": ["Apple"]
     }
 }
