@@ -1,6 +1,6 @@
 
 class Entity :
-    def __init__(self, name, type, hp, hostile, str, spd, exp):
+    def __init__(self, name, type, hp, hostile, str, spd, exp, honor):
 
         self.name = name
         self.health = hp
@@ -10,6 +10,8 @@ class Entity :
         self.str = str
         self.spd = spd
         self.exp = exp
+
+        self.honor = honor
 
         self.arrogance = 0
         self.defensive = 0
