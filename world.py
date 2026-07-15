@@ -28,5 +28,5 @@ class World:
 
         for entity_name, data in entities.items():
             entity_data = data
-            entity = Entity(entity_name, entity_data["type"], entity_data["hp"], entity_data["hostile"], entity_data["str"], entity_data["spd"], entity_data["exp"])
+            entity = Entity(entity_name, entity_data["type"], entity_data["hp"], entity_data["hostile"], entity_data["str"], entity_data["spd"], entity_data["exp"], entity_data["honor"])
             self.entities[entity_name] = entity
