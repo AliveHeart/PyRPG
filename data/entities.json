@@ -8,8 +8,10 @@
         "exp": 1,
         "hostile": false,
         "coward": 100,
-        "arrogance": -30,
-        "defensive": 5
+        "arrogance": -80,
+        "defensive": 5,
+
+        "honor-gain": -100
     },
 
     "Merchant": {
@@ -22,7 +24,9 @@
         "hostile": false,
         "coward": 30,
         "arrogance": 20,
-        "defensive": 50
+        "defensive": 50,
+
+        "honor-gain": -10
     },
 
     "Goblin": {
@@ -35,7 +39,9 @@
         "hostile": true,
         "coward": 40,
         "arrogance": 50,
-        "defensive": 10
+        "defensive": 10,
+
+        "honor-gain": 5
     },
 
     "Ogre": {
@@ -48,7 +54,9 @@
         "hostile": true,
         "coward": 10,
         "arrogance": 80,
-        "defensive": 10
+        "defensive": 10,
+
+        "honor-gain": 10
     },
 
     "Wolf": {
@@ -61,7 +69,9 @@
         "hostile": true,
         "coward": 5,
         "arrogance": 20,
-        "defensive": 80
+        "defensive": 80,
+
+        "honor-gain": 8
     },
 
     "Farmer": {
@@ -74,6 +84,8 @@
         "hostile": false,
         "coward": 100,
         "arrogance": 0,
-        "defensive": 0
+        "defensive": 0,
+
+        "honor-gain": -10
     }
 }
