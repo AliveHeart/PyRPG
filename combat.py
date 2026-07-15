@@ -80,7 +80,30 @@ def attack(game, descision):
         enemy_feedback = "The " + enemy.name + " has surrendered."
 
     return [plr_feedback, enemy_feedback]
+
+def run(game, enemy):
+    can_run = chance_roll(enemy.spd, game.player.spd)
+    condition = ["You try to run away."]
+    if can_run:
+        game.player.in_combat = False
+        game.player.enemy = "air"
+
+        condition.append("You managed to escape the " + enemy.name + ". ")
+    else:
+        condition.append(enemy_attack(enemy, game.player))
     
+    return condition
+
+def defend(game, enemy, descision):
+    can_block = chance_roll(enemy.endur, game.player.endur)
+    condition = ["You block."]
+    if can_block and descision == "attack":
+        condition.append("You block the hit")
+    elif descision == "attack":
+        condition[0] = "You try to block but fail."
+        condition.append(enemy_attack(enemy, game.player))
+    
+    return condition
 
 def act(action, game):
     enemy = game.world.entities[game.player.enemy]
@@ -90,22 +113,37 @@ def act(action, game):
     condition = []
     if action == "attack":
         condition = attack(game, descision)
-    if action == "run":
-        can_run = chance_roll(enemy.spd, game.player.spd)
-        condition.append("You try to run away.")
-        if can_run:
-            game.player.in_combat = False
-            game.player.enemy = "air"
-
-            condition.append("You managed to escape the " + enemy.name + ". ")
-        else:
-            condition.append(enemy_attack(enemy, game.player))
-
+    elif action == "run":
+       condition = run(game, enemy)
+    elif action == "defend":
+        condition = defend(game, enemy, descision)
 
     if enemy.health <= 0:
+        kill(game)
+    elif descision == "surrender":
         game.player.in_combat = False
-        game.player.enemy = "air"
+        condition = ["Choose what to do with the " + enemy.name, "-> kill | -> steal | -> spare"]
 
-        return ["The " + enemy.name + " has fallen", "+ " + str(random.randint(1, 5) * enemy.str * enemy.endur) + " xp"]
-
+    if len(condition) < 2:
+        return [".", "."]
     return condition
+
+def kill(game):
+    enemy = game.world.entities[game.player.enemy]
+    player = game.player
+    xp = (random.randint(1, 5) * enemy.str * enemy.endur / 2)
+
+    player.enemy = "air"
+    player.xp += xp
+
+    return ["The " + enemy.name + " has fallen", "+ " + str(xp) + " xp"]
+
+def spare(game):
+    enemy = game.world.entities[game.player.enemy]
+    player = game.player
+    honor = abs(enemy.honor / 2)
+
+    player.enemy = "air"
+    player.honor += honor
+
+    return ["You spare " + enemy.name + ".", "+ " + str(honor) + " honor"]
