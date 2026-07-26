@@ -1,0 +1,22 @@
+{
+    "health": 62,
+    "max_health": 100,
+    "luck": 0,
+    "xp": 0,
+    "lvl": 2,
+    "current_location": "Home",
+    "str": 3,
+    "spd": 3,
+    "endur": 3,
+    "money": 100,
+    "weapon": "fist",
+    "weapon_dmg": 1,
+    "weapon_spd": 1,
+    "inventory": [],
+    "honor": 5,
+    "in_combat": false,
+    "enemy": "air",
+    "helmet": 0,
+    "chestplate": 0,
+    "leggings": 0
+}
