@@ -38,3 +38,11 @@ class Player :
 
             return True
         return False
+
+    def to_dict(self):
+        return {k: v for k, v in vars(self).items() if k != "userID"}
+    
+    def load_from_dict(self, data: dict):
+        for key, value in data.items():
+            if key != "userID":
+                setattr(self, key, value)
