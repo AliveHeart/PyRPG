@@ -1,4 +1,4 @@
-import renderer, combat
+import renderer, combat, loader
 
 def execute(game, string):
     action = string.split()[0]
@@ -37,6 +37,15 @@ def execute(game, string):
 
             renderer.render("You look around. " + current_location.description + " You see " + str(path_no) + " paths to " + path_names)
             renderer.render("You spot " + entity_Names)
+        elif action == "save":
+            save = loader.save_json(str(arg[0]), game.player.to_dict())
+            if save == True:
+                renderer.render("Data saved!")
+        elif action == "load":
+            data = loader.load_json("data/save_slots/" + str(arg[0]) + ".json")
+            game.player.load_from_dict(data)
+
+            renderer.render("Data loaded!")
         elif action == "go":
             if arg[0] in current_location.connections:
                 game.player.current_location = arg[0]
