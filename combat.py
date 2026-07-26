@@ -117,12 +117,18 @@ def act(action, game):
        condition = run(game, enemy)
     elif action == "defend":
         condition = defend(game, enemy, descision)
-    elif descision == "surrender":
+        
+    if descision == "surrender":
         game.player.in_combat = False
         condition = ["Choose what to do with the " + enemy.name, "-> kill | -> steal | -> spare"]
 
     if enemy.health <= 0:
-        kill(game)
+        condition = kill(game)
+
+    if game.player.health <= 0:
+        game.player.in_combat = False
+        game.player.health = game.player.max_health
+
 
     if len(condition) < 2:
         return [".", "."]
@@ -138,12 +144,19 @@ def kill(game):
 
     player.honor += enemy.honor
 
+    game.player.in_combat = False
+
     return ["The " + enemy.name + " has fallen", "+ " + str(xp) + " xp, " + str(enemy.honor) + "+ honor."]
+
+def steal(game):
+    enemy = game.world.entities[game.player.enemy]
 
 def spare(game):
     enemy = game.world.entities[game.player.enemy]
     player = game.player
     honor = abs(enemy.honor / 2)
+
+    game.player.in_combat = False
 
     player.enemy = "air"
     player.honor += honor
