@@ -1,4 +1,5 @@
-import renderer, combat, loader
+import renderer, combat, loader, copy
+from types import SimpleNamespace
 
 def execute(game, string):
     action = string.split()[0]
@@ -56,12 +57,18 @@ def execute(game, string):
         elif action == "fight":
             if arg[0] in current_location.entities:
                 renderer.render("You deicde to fight " + arg[0])
-                game.player.in_combat = True
-                game.player.enemy = arg[0]
 
-                renderer.render("You are in combat with a " + game.player.enemy + ". ")
+                enemy = game.world.entities[arg[0]]
+
+                game.player.in_combat = True
+                game.player.enemy = vars(copy.copy(enemy))
+                game.player.enemy = SimpleNamespace(**game.player.enemy)
+
+                print(game.player.enemy)
+
+                renderer.render("You are in combat with a " + game.player.enemy.name + ". ")
                 renderer.render("Actions : -> attack -> defend -> run -> surrender")
-        elif game.player.enemy != "air":
+        elif game.player.enemy != {}:
             if action == "kill":
                 returnState = combat.kill(game)
                 renderer.render(returnState[0])
@@ -70,20 +77,18 @@ def execute(game, string):
                 returnState = combat.spare(game)
                 renderer.render(returnState[0])
                 renderer.render(returnState[1])
-        elif game.player.enemy != "air":
-            game.player.enemy = "air"
 
     else:
-        if game.player.enemy != "air":
-            enemy = game.world.entities[game.player.enemy]
+        if game.player.enemy != {}:
+            enemy = game.player.enemy
             condition = combat.act(action ,game)
 
             renderer.render(condition[0])
             renderer.render(condition[1])
 
-            if game.player.health > 0 and game.player.enemy != "air" and game.player.in_combat == True:
-                renderer.render("You are in combat with a " + game.player.enemy + ". ")
-                renderer.render("Your health :- " + str(game.player.health) + "HP. " + game.player.enemy + " health :- " + str(enemy.health) + "HP.")
+            if game.player.health > 0 and game.player.enemy != {} and game.player.in_combat == True:
+                renderer.render("You are in combat with a " + enemy.name + ". ")
+                renderer.render("Your health :- " + str(game.player.health) + "HP. " + enemy.name + " health :- " + str(enemy.health) + "HP.")
                 renderer.render("Actions : -> attack | -> defend | -> run | -> surrender")
 
     can_lvl = game.player.LevelUP()
