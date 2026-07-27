@@ -25,7 +25,7 @@ class Player :
 
         self.honor = 0
         self.in_combat = False
-        self.enemy = "air"
+        self.enemy = {}
 
         self.helmet = 0
         self.chestplate = 0
