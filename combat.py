@@ -49,11 +49,11 @@ def enemy_descision(enemy, player):
     
     return descision
 
-def attack(game, descision):
-    enemy = game.player.enemy
+def attack(player, descision):
+    enemy = player.enemy
 
-    plr_damage = game.player.str * game.player.weapon_dmg
-    plr_speed = game.player.spd * game.player.weapon_spd
+    plr_damage = player.str * player.weapon_dmg
+    plr_speed = player.spd * player.weapon_spd
 
     enemy_spd = enemy.spd
 
@@ -67,67 +67,67 @@ def attack(game, descision):
             plr_feedback = "You hit the " + enemy.name + " and deal " + str(plr_damage) + " damage!"
     else:
         plr_feedback = "The " + enemy.name + " defends!"
-        if (game.player.str * game.player.endur) > (enemy.str * enemy.endur):
+        if (player.str * player.endur) > (enemy.str * enemy.endur):
             enemy_feedback = "You hit the " + enemy.name + " but the " + enemy.name + " blocks the attack. You deal " + str(plr_damage) + " damage!"
         else:
             enemy_feedback = "You hit the " + enemy.name + " but the " + enemy.name + " blocks the attack."
     
 
     if descision == "attack" :
-        enemy_feedback = enemy_attack(enemy, game.player)
+        enemy_feedback = enemy_attack(enemy, player)
     elif descision == "surrender":
         enemy.surrendered = True
         enemy_feedback = "The " + enemy.name + " has surrendered."
 
     return [plr_feedback, enemy_feedback]
 
-def run(game, enemy):
-    can_run = chance_roll(enemy.spd, game.player.spd)
+def run(player, enemy):
+    can_run = chance_roll(enemy.spd, player.spd)
     condition = ["You try to run away."]
     if can_run:
-        game.player.in_combat = False
-        game.player.enemy = {}
+        player.in_combat = False
+        player.enemy = {}
 
         condition.append("You managed to escape the " + enemy.name + ". ")
     else:
-        condition.append(enemy_attack(enemy, game.player))
+        condition.append(enemy_attack(enemy, player))
     
     return condition
 
-def defend(game, enemy, descision):
-    can_block = chance_roll(enemy.endur, game.player.endur)
+def defend(player, enemy, descision):
+    can_block = chance_roll(enemy.endur, player.endur)
     condition = ["You block."]
     if can_block and descision == "attack":
         condition.append("You block the hit")
     elif descision == "attack":
         condition[0] = "You try to block but fail."
-        condition.append(enemy_attack(enemy, game.player))
+        condition.append(enemy_attack(enemy, player))
     
     return condition
 
-def act(action, game):
-    enemy = game.player.enemy
+def act(action, player):
+    enemy = player.enemy
 
-    descision = enemy_descision(enemy, game.player)
+    descision = enemy_descision(enemy, player)
     
     condition = []
     if action == "attack":
-        condition = attack(game, descision)
+        condition = attack(player, descision)
     elif action == "run":
-       condition = run(game, enemy)
+       condition = run(player, enemy)
     elif action == "defend":
-        condition = defend(game, enemy, descision)
+        condition = defend(player, enemy, descision)
         
     if descision == "surrender":
-        game.player.in_combat = False
+        player.in_combat = False
         condition = ["Choose what to do with the " + enemy.name, "-> kill | -> steal | -> spare"]
 
     if enemy.health <= 0:
-        condition = kill(game)
+        condition = kill(player)
 
-    if game.player.health <= 0:
-        game.player.in_combat = False
-        game.player.health = game.player.max_health
+    if player.health <= 0:
+        player.in_combat = False
+        player.health = player.max_health
 
         condition = ["You have fallen", "It's like it never happened."]
 
@@ -136,9 +136,8 @@ def act(action, game):
         return [".", "."]
     return condition
 
-def kill(game):
-    enemy = game.player.enemy
-    player = game.player
+def kill(player):
+    enemy = player.enemy
     xp = (random.randint(1, 5) * enemy.str * enemy.endur / 2)
 
     player.enemy = {}
@@ -146,19 +145,18 @@ def kill(game):
 
     player.honor += enemy.honor
 
-    game.player.in_combat = False
+    player.in_combat = False
 
     return ["The " + enemy.name + " has fallen", "+ " + str(xp) + " xp, " + str(enemy.honor) + "+ honor."]
 
-def steal(game):
-    enemy = game.player.enemy
+def steal(player):
+    enemy = player.enemy
 
-def spare(game):
-    enemy = game.player.enemy
-    player = game.player
+def spare(player):
+    enemy = player.enemy
     honor = abs(enemy.honor / 2)
 
-    game.player.in_combat = False
+    player.in_combat = False
 
     player.enemy = {}
     player.honor += honor
