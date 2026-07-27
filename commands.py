@@ -64,24 +64,22 @@ def execute(game, string):
                 game.player.enemy = vars(copy.copy(enemy))
                 game.player.enemy = SimpleNamespace(**game.player.enemy)
 
-                print(game.player.enemy)
-
                 renderer.render("You are in combat with a " + game.player.enemy.name + ". ")
                 renderer.render("Actions : -> attack -> defend -> run -> surrender")
         elif game.player.enemy != {}:
             if action == "kill":
-                returnState = combat.kill(game)
+                returnState = combat.kill(game.player)
                 renderer.render(returnState[0])
                 renderer.render(returnState[1])
             elif action == "spare":
-                returnState = combat.spare(game)
+                returnState = combat.spare(game.player)
                 renderer.render(returnState[0])
                 renderer.render(returnState[1])
 
     else:
         if game.player.enemy != {}:
             enemy = game.player.enemy
-            condition = combat.act(action ,game)
+            condition = combat.act(action , game.player)
 
             renderer.render(condition[0])
             renderer.render(condition[1])
