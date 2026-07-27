@@ -12,7 +12,7 @@
     "weapon": "fist",
     "weapon_dmg": 1,
     "weapon_spd": 1,
-    "inventory": [],
+    "inventory": ["01 03 01", "01 04 01", "01 01 01"],
     "honor": 23,
     "in_combat": false,
     "enemy": {},
