@@ -1,21 +1,23 @@
 {
-    "Helmet": {
+    "02 01": {
+        "name": "Helmet",
         "Protection": 1.02,
         "Rate": 34,
         "Slot": 1,
         "Value": 10
     },
-    "Chestplate": {
+    "02 02": {
+        "name": "Chestplate",
         "Protection": 1.025,
         "Rate": 33, 
         "Slot": 2, 
         "Value": 20
     },
-    "Leggings": 
-    {
-    "Protection": 1.02, 
-    "Rate": 33, 
-    "Slot": 3, 
-    "Value": 20
+    "02 03": {
+        "name": "Leggings",
+        "Protection": 1.02, 
+        "Rate": 33, 
+        "Slot": 3, 
+        "Value": 20
     }
 }

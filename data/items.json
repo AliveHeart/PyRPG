@@ -1,0 +1,32 @@
+{
+    "01 01" : {
+      "name": "Apple",
+      "rarity": "Common",
+      "value": 5,
+      "usable": true
+    },
+    "01 02" : {
+      "name": "Banana",
+      "rarity": "Common",
+      "value": 6,
+      "usable": true
+    },
+    "01 03" : {
+      "name": "Scrap",
+      "rarity": "Uncommon",
+      "value": 2,
+      "usable": false
+    },
+    "01 04" : {
+      "name": "Trinket",
+      "rarity": "Rare",
+      "value": 20,
+      "usable": false
+    },
+    "01 05" : {
+      "name": "Jewels",
+      "rarity": "Epic",
+      "value": 100,
+      "usable": false
+    }
+}
