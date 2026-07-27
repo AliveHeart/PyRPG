@@ -50,7 +50,7 @@ def enemy_descision(enemy, player):
     return descision
 
 def attack(game, descision):
-    enemy = game.world.entities[game.player.enemy]
+    enemy = game.player.enemy
 
     plr_damage = game.player.str * game.player.weapon_dmg
     plr_speed = game.player.spd * game.player.weapon_spd
@@ -86,7 +86,7 @@ def run(game, enemy):
     condition = ["You try to run away."]
     if can_run:
         game.player.in_combat = False
-        game.player.enemy = "air"
+        game.player.enemy = {}
 
         condition.append("You managed to escape the " + enemy.name + ". ")
     else:
@@ -106,7 +106,7 @@ def defend(game, enemy, descision):
     return condition
 
 def act(action, game):
-    enemy = game.world.entities[game.player.enemy]
+    enemy = game.player.enemy
 
     descision = enemy_descision(enemy, game.player)
     
@@ -129,17 +129,19 @@ def act(action, game):
         game.player.in_combat = False
         game.player.health = game.player.max_health
 
+        condition = ["You have fallen", "It's like it never happened."]
+
 
     if len(condition) < 2:
         return [".", "."]
     return condition
 
 def kill(game):
-    enemy = game.world.entities[game.player.enemy]
+    enemy = game.player.enemy
     player = game.player
     xp = (random.randint(1, 5) * enemy.str * enemy.endur / 2)
 
-    player.enemy = "air"
+    player.enemy = {}
     player.xp += xp
 
     player.honor += enemy.honor
@@ -149,16 +151,16 @@ def kill(game):
     return ["The " + enemy.name + " has fallen", "+ " + str(xp) + " xp, " + str(enemy.honor) + "+ honor."]
 
 def steal(game):
-    enemy = game.world.entities[game.player.enemy]
+    enemy = game.player.enemy
 
 def spare(game):
-    enemy = game.world.entities[game.player.enemy]
+    enemy = game.player.enemy
     player = game.player
     honor = abs(enemy.honor / 2)
 
     game.player.in_combat = False
 
-    player.enemy = "air"
+    player.enemy = {}
     player.honor += honor
 
     return ["You spare " + enemy.name + ".", "+ " + str(honor) + " honor"]
