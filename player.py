@@ -40,9 +40,15 @@ class Player :
         return False
 
     def to_dict(self):
-        return {k: v for k, v in vars(self).items() if k != "userID"}
+        excluded = {"userID", "in_combat", "enemy"}
+        return {k: v for k, v in vars(self).items() if k not in excluded}
     
     def load_from_dict(self, data: dict):
+        excluded = {"userID", "in_combat", "enemy"}
         for key, value in data.items():
-            if key != "userID":
-                setattr(self, key, value)
+            if key in excluded:
+                continue
+            if isinstance(value, (int, float)) and value == 0:
+                continue
+            setattr(self, key, value)
+
