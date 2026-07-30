@@ -53,7 +53,7 @@ def execute(game, string):
                 renderer.render("Your inventory is empty.")
             else:
                 for item in inventory.recall(player):
-                    renderer.render(item[0]["name"] + " x" + item[1])
+                    renderer.render(item)
         elif action == "go":
             if arg[0] in current_location.connections:
                 player.current_location = arg[0]
