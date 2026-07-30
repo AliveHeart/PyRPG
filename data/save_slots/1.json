@@ -4,7 +4,7 @@
     "luck": 0,
     "xp": 0,
     "lvl": 4,
-    "current_location": "Deeper",
+    "current_location": "Small-village",
     "str": 3,
     "spd": 3,
     "endur": 3,
@@ -12,7 +12,11 @@
     "weapon": "fist",
     "weapon_dmg": 1,
     "weapon_spd": 1,
-    "inventory": ["01 03 01", "01 04 01", "01 01 01"],
+    "inventory": [
+        "1 3 1",
+        "1 4 1",
+        "1 1 1"
+    ],
     "honor": 23,
     "in_combat": false,
     "enemy": {},

@@ -1,29 +1,29 @@
 {
-  "03 01": {
+  "3 1": {
     "name": "Katana",
     "dmg": 5,
     "spd": 8,
     "rate": 20
   },
-  "03 02": {
+  "3 2": {
     "name": "Hammer",
     "dmg": 10,
     "spd": 4,
     "rate": 20
   },
-  "03 03": {
+  "3 3": {
     "name": "Axe",
     "dmg": 13,
     "spd": 2,
     "rate": 20
   },
-  "03 04": {
+  "3 4": {
     "name": "Dagger",
     "dmg": 3,
     "spd": 10,
     "rate": 20
   },
-  "03 05": {
+  "3 5": {
     "name": "Sword",
     "dmg": 7,
     "spd": 6,
