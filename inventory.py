@@ -4,7 +4,9 @@ def recall(player):
     inventory = []
     for item in player.inventory:
         the_item = items.get(item)
-        if the_item:
-            inventory.append(the_item)
+        if the_item and item[0] == "1":
+            inventory.append(the_item[0]["name"] + " x" + the_item[1])
+        elif the_item:
+            inventory.append(the_item[0]["name"] + " " + the_item[1]["name"] + " " + the_item[2]["name"] + " x" + the_item[3])
 
     return inventory
