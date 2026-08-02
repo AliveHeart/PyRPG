@@ -2,20 +2,24 @@ import loader
 
 data_path = "data/"
 
+items = loader.load_json(data_path + "items.json")
+armor = loader.load_json(data_path + "armour.json")
+material = loader.load_json(data_path + "material.json")
+adjective_armr = loader.load_json(data_path + "adjective-armour.json")
+adjective_wp = loader.load_json(data_path + "adjective-weapon.json")
+
 def get(id):
-    item_ids = id.split()
+    item_ids = str(id)
     u_id = " ".join(item_ids[:-1])
 
     if item_ids[0] == "1":
-        items = loader.load_json(data_path + "items.json")
         if str(u_id) in items:
             return [items[u_id], str(int(item_ids[-1]))]
     else:
-        armor = loader.load_json(data_path + "armour.json")
-        material = loader.load_json(data_path + "material.json")
-        adjective = loader.load_json(data_path + "adjective-armour.json")
         if item_ids[0] == "3":
-            adjective = loader.load_json(data_path + "adjective-weapon.json")
+            adjective = adjective_wp
+        else:
+            adjective = adjective_armr
 
         armor_index = item_ids[0] + " " + item_ids[1]
         if (armor_index) in armor and item_ids[2] in material:
