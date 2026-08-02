@@ -1,24 +1,24 @@
 
 class Entity :
-    def __init__(self, name, type, hp, hostile, str, spd, exp, honor):
+    def __init__(self, name, entitydata):
 
         self.name = name
-        self.health = hp
-        self.max_health = hp
-        self.hostile = hostile
+        self.health = entitydata["hp"]
+        self.max_health = entitydata["hp"]
+        self.hostile = entitydata["hostile"]
 
-        self.str = str
-        self.spd = spd
-        self.exp = exp
+        self.str = entitydata["str"]
+        self.spd = entitydata["spd"]
+        self.exp = entitydata["exp"]
 
-        self.honor = honor
+        self.honor = entitydata["honor"]
 
-        self.arrogance = 0
-        self.defensive = 0
-        self.cowardness = 0
+        self.arrogance = entitydata["arrogance"]
+        self.defensive = entitydata["defensive"]
+        self.cowardness = entitydata["coward"]
 
         self.surrendered = False
-        self.type = type
+        self.type = entitydata["type"]
 
-        self.endur = str * spd
-        self.money = 100
+        self.endur = self.str * self.spd
+        self.money = entitydata["money"]
