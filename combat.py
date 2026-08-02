@@ -17,9 +17,10 @@ def enemy_attack(enemy, player):
         return ("The " + enemy.name + " attacks you for " + str(enemy.str) + " damage!")
     
 def enemy_descision(enemy, player):
-    attack_weightage = 80 + enemy.arrogance
-    defend_weightage = 20 + enemy.defensive
-    surrender_weightage = 10 + enemy.cowardness 
+    attack_weightage = 50 + enemy.arrogance
+    defend_weightage = 35 + enemy.defensive
+    surrender_weightage = 35 + enemy.cowardness
+
     if enemy.health <= (enemy.max_health * 0.4) and enemy.health > (enemy.max_health * 0.2):
         defend_weightage += 20
         attack_weightage -= 20
@@ -33,7 +34,7 @@ def enemy_descision(enemy, player):
         defend_weightage -= 15
         surrender_weightage -= 15
 
-    if player.str <= (enemy.str + enemy.endur):
+    if player.str <= enemy.str:
         surrender_weightage -= 20
         defend_weightage -= 20
         attack_weightage += 40
