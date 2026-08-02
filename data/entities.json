@@ -10,8 +10,8 @@
 
         "hostile": false,
 
-        "coward": 100,
-        "arrogance": -80,
+        "coward": 95,
+        "arrogance": 0,
         "defensive": 5,
 
         "honor": -100,
@@ -51,9 +51,9 @@
 
         "hostile": true,
 
-        "coward": 40,
-        "arrogance": 50,
-        "defensive": 10,
+        "coward": 50,
+        "arrogance": 49,
+        "defensive": 1,
 
         "honor": 5,
         "money": 20,
