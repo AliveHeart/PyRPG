@@ -1,3 +1,24 @@
+KEY_MAP = {
+    "hp": "health",
+    "mhp": "max_health",
+    "luck": "luck",
+    "xp": "xp",
+    "lvl": "lvl",
+    "loc": "current_location",
+    "str": "str",
+    "spd": "spd",
+    "endur": "endur",
+    "money": "money",
+    "wp": "weapon",
+    "wp_dmg": "weapon_dmg",
+    "wp_spd": "weapon_spd",
+    "inv": "inventory",
+    "honor": "honor",
+    "helm": "helmet",
+    "chest": "chestplate",
+    "leg": "leggings"
+}
+REVERSE_MAP = {v: k for k, v in KEY_MAP.items()}
 
 class Player :
     def __init__(self):
@@ -17,7 +38,7 @@ class Player :
         self.endur = 3
         self.money = 100
 
-        self.weapon = "fist"
+        self.weapon = 1
         self.weapon_dmg = 1
         self.weapon_spd = 1
 
@@ -41,14 +62,20 @@ class Player :
 
     def to_dict(self):
         excluded = {"userID", "in_combat", "enemy"}
-        return {k: v for k, v in vars(self).items() if k not in excluded}
+        result = {}
+        for k, v in vars(self).items():
+            if k in excluded:
+                continue
+            json_key = REVERSE_MAP.get(k, k)
+            result[json_key] = v
+        return result
     
     def load_from_dict(self, data: dict):
         excluded = {"userID", "in_combat", "enemy"}
+        
         for key, value in data.items():
             if key in excluded:
                 continue
-            if isinstance(value, (int, float)) and value == 0:
-                continue
-            setattr(self, key, value)
+            attr = KEY_MAP.get(key, key)
+            setattr(self, attr, value)
 
