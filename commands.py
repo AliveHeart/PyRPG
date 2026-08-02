@@ -72,7 +72,7 @@ def execute(game, string):
                 player.enemy = SimpleNamespace(**player.enemy)
 
                 renderer.render("You are in combat with a " + player.enemy.name + ". ")
-                renderer.render("Actions : -> attack -> defend -> run -> surrender")
+                renderer.render("Actions : -> attack -> defend -> run")
         elif player.enemy != {}:
             if action == "kill":
                 returnState = combat.kill(player)
