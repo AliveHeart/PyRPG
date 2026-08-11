@@ -1,12 +1,17 @@
 import renderer, combat, loader, copy, inventory
 from types import SimpleNamespace
+from player import Player
 
-def execute(game, string):
+def execute(game, string, id):
     action = string.split()[0]
     arg = string.split()
     arg.pop(0)
 
-    player = game.player
+    player = Player()
+
+    data = loader.load_json("data/save_slots/" + str(id) + ".json")
+    player.load_from_dict(data)
+
     current_location = game.world.areas[player.current_location]
 
     if player.in_combat == False:
@@ -39,15 +44,6 @@ def execute(game, string):
 
             renderer.render("You look around. " + current_location.description + " You see " + str(path_no) + " paths to " + path_names)
             renderer.render("You spot " + entity_Names)
-        elif action == "save":
-            save = loader.save_json(str(arg[0]), player.to_dict())
-            if save == True:
-                renderer.render("Data saved!")
-        elif action == "load":
-            data = loader.load_json("data/save_slots/" + str(arg[0]) + ".json")
-            player.load_from_dict(data)
-
-            renderer.render("Data loaded!")
         elif action == "inventory":
             if len(player.inventory) == 0:
                 renderer.render("Your inventory is empty.")
@@ -99,6 +95,9 @@ def execute(game, string):
     can_lvl = player.LevelUP()
     if can_lvl:
         renderer.render("You leveled up to " + str(player.lvl) + "!")
+
+
+    loader.save_json(str(id), player.to_dict())
                 
         
 
