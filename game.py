@@ -4,19 +4,17 @@ class Game:
     def __init__(self):
         self.running = True
 
-        self.player = player.Player()
         self.world = world.World()
         
         self.running = True
         
-    def run(self):
-        while self.running:
-            command = input("> ")
-
-            commands.execute(
+    def run(self, command, plrid):
+        commands.execute(
                 self,
                 command,
+                plrid
             )
 
+
+
 game = Game()
-game.run()
