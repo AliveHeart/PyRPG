@@ -15,6 +15,4 @@ class Game:
                 plrid
             )
 
-
-
 game = Game()
