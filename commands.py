@@ -15,6 +15,8 @@ def execute(game, string, id):
 
     output = []
 
+    current_location = game.world.areas[player.current_location]
+
     if player.in_combat == False:
         if action == "look":
             contexts = look(game, player)
