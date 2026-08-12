@@ -9,6 +9,8 @@ KEY_MAP = {
     "spd": "spd",
     "endur": "endur",
     "money": "money",
+    "inComb": "in_combat",
+    "enemy": "enemy",
     "wp": "weapon",
     "wp_dmg": "weapon_dmg",
     "wp_spd": "weapon_spd",
@@ -61,7 +63,7 @@ class Player :
         return False
 
     def to_dict(self):
-        excluded = {"userID", "in_combat", "enemy"}
+        excluded = {"userID"}
         result = {}
         for k, v in vars(self).items():
             if k in excluded:
@@ -71,7 +73,7 @@ class Player :
         return result
     
     def load_from_dict(self, data: dict):
-        excluded = {"userID", "in_combat", "enemy"}
+        excluded = {"userID"}
         
         for key, value in data.items():
             if key in excluded:
