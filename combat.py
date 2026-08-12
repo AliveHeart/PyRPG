@@ -1,4 +1,5 @@
 import random, randomer
+from types import SimpleNamespace
 
 def chance_roll(enemy_atr, plr_atr):
     ratio = enemy_atr / plr_atr
@@ -51,7 +52,7 @@ def enemy_descision(enemy, player):
     return descision
 
 def attack(player, descision):
-    enemy = player.enemy
+    enemy = SimpleNamespace(**player.enemy)
 
     plr_damage = player.str * player.weapon_dmg
     plr_speed = player.spd * player.weapon_spd
@@ -106,9 +107,7 @@ def defend(player, enemy, descision):
     
     return condition
 
-def act(action, player):
-    enemy = player.enemy
-
+def act(action, player, enemy):
     descision = enemy_descision(enemy, player)
     
     condition = []
@@ -121,7 +120,7 @@ def act(action, player):
         
     if descision == "surrender":
         player.in_combat = False
-        condition = ["Choose what to do with the " + enemy.name, "-> kill | -> steal | -> spare"]
+        condition = ["The " + enemy.name + " has surrendered. Choose what to do with the " + enemy.name, "-> kill | -> steal | -> spare"]
 
     if enemy.health <= 0:
         condition = kill(player)
@@ -138,7 +137,7 @@ def act(action, player):
     return condition
 
 def kill(player):
-    enemy = player.enemy
+    enemy = SimpleNamespace(**player.enemy)
     xp = (random.randint(1, 5) * enemy.str * enemy.endur / 2)
 
     player.enemy = {}
@@ -151,10 +150,10 @@ def kill(player):
     return ["The " + enemy.name + " has fallen", "+ " + str(xp) + " xp, " + str(enemy.honor) + "+ honor."]
 
 def steal(player):
-    enemy = player.enemy
+    enemy = SimpleNamespace(**player.enemy)
 
 def spare(player):
-    enemy = player.enemy
+    enemy = SimpleNamespace(**player.enemy)
     honor = abs(enemy.honor / 2)
 
     player.in_combat = False
