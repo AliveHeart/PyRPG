@@ -11,7 +11,10 @@ def execute(game, string, id):
     player = Player()
 
     data = loader.load_json("data/save_slots/" + str(id) + ".json")
-    player.load_from_dict(data)
+    if data:
+        player.load_from_dict(data)
+    else:
+        return ["No save slot found!"]
 
     output = []
 
@@ -47,6 +50,8 @@ def execute(game, string, id):
 
                 output.append("You are in combat with a " + player.enemy.name + ". ")
                 output.append("Actions : -> attack -> defend -> run")
+
+                player.enemy = vars(player.enemy)
         elif player.enemy != {}:
             if action == "kill":
                 returnState = combat.kill(player)
@@ -59,8 +64,8 @@ def execute(game, string, id):
 
     else:
         if player.enemy != {}:
-            enemy = player.enemy
-            condition = combat.act(action , player)
+            enemy = SimpleNamespace(**player.enemy)
+            condition = combat.act(action , player, enemy)
 
             output.append(condition[0])
             output.append(condition[1])
