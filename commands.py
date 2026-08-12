@@ -1,4 +1,5 @@
-import renderer, combat, loader, copy, inventory
+import combat, loader, copy, inventory
+from look import look
 from types import SimpleNamespace
 from player import Player
 
@@ -12,54 +13,29 @@ def execute(game, string, id):
     data = loader.load_json("data/save_slots/" + str(id) + ".json")
     player.load_from_dict(data)
 
-    current_location = game.world.areas[player.current_location]
+    output = []
 
     if player.in_combat == False:
         if action == "look":
-            path_names = ""
-            path_no = len(current_location.connections)
-            for index, area_name in enumerate(current_location.connections):
-                if path_no > 1:
-                    if (path_no - 1) == index:
-                        path_names += "and " + area_name + ". "
-                    elif (path_no - 2) == index:
-                        path_names += "" + area_name + " "
-                    else:
-                        path_names += "" + area_name + ", "
-                else:
-                    path_names += "" + area_name + ". "
-
-            entity_Names = ""
-            entity_no = len(current_location.entities)
-            for index, entity_name in enumerate(current_location.entities):
-                if entity_no > 1:
-                    if (entity_no - 1) == index:
-                        entity_Names += "and " + entity_name + ". "
-                    elif (entity_no - 2) == index:
-                        entity_Names += "" + entity_name + " "
-                    else:
-                        entity_Names += "" + entity_name + ", "
-                else:
-                    entity_Names += "" + entity_name + ". "
-
-            renderer.render("You look around. " + current_location.description + " You see " + str(path_no) + " paths to " + path_names)
-            renderer.render("You spot " + entity_Names)
+            contexts = look(game, player)
+            for text in contexts:
+                output.append(text)
         elif action == "inventory":
             if len(player.inventory) == 0:
-                renderer.render("Your inventory is empty.")
+                output.append("Your inventory is empty.")
             else:
                 for item in inventory.recall(player):
-                    renderer.render(item)
+                    output.append(item)
         elif action == "go":
             if arg[0] in current_location.connections:
                 player.current_location = arg[0]
 
-                renderer.render("You reach the " + arg[0] + ". ")
+                output.append("You reach the " + arg[0] + ". ")
             else:
-                renderer.render("You can't find a way to " + arg[0] + ". ")
+                output.append("You can't find a way to " + arg[0] + ". ")
         elif action == "fight":
             if arg[0] in current_location.entities:
-                renderer.render("You deicde to fight " + arg[0])
+                output.append("You deicde to fight " + arg[0])
 
                 enemy = game.world.entities[arg[0]]
 
@@ -67,37 +43,37 @@ def execute(game, string, id):
                 player.enemy = vars(copy.copy(enemy))
                 player.enemy = SimpleNamespace(**player.enemy)
 
-                renderer.render("You are in combat with a " + player.enemy.name + ". ")
-                renderer.render("Actions : -> attack -> defend -> run")
+                output.append("You are in combat with a " + player.enemy.name + ". ")
+                output.append("Actions : -> attack -> defend -> run")
         elif player.enemy != {}:
             if action == "kill":
                 returnState = combat.kill(player)
-                renderer.render(returnState[0])
-                renderer.render(returnState[1])
+                output.append(returnState[0])
+                output.append(returnState[1])
             elif action == "spare":
                 returnState = combat.spare(player)
-                renderer.render(returnState[0])
-                renderer.render(returnState[1])
+                output.append(returnState[0])
+                output.append(returnState[1])
 
     else:
         if player.enemy != {}:
             enemy = player.enemy
             condition = combat.act(action , player)
 
-            renderer.render(condition[0])
-            renderer.render(condition[1])
+            output.append(condition[0])
+            output.append(condition[1])
 
             if player.health > 0 and player.enemy != {} and player.in_combat == True:
-                renderer.render("You are in combat with a " + enemy.name + ". ")
-                renderer.render("Your health :- " + str(player.health) + "HP. " + enemy.name + " health :- " + str(enemy.health) + "HP.")
-                renderer.render("Actions : -> attack | -> defend | -> run | -> surrender")
+                output.append("You are in combat with a " + enemy.name + ". ")
+                output.append("Your health :- " + str(player.health) + "HP. " + enemy.name + " health :- " + str(enemy.health) + "HP.")
+                output.append("Actions : -> attack | -> defend | -> run | -> surrender")
 
     can_lvl = player.LevelUP()
     if can_lvl:
-        renderer.render("You leveled up to " + str(player.lvl) + "!")
-
+        output.append("You leveled up to " + str(player.lvl) + "!")
 
     loader.save_json(str(id), player.to_dict())
+    return output
                 
         
 
