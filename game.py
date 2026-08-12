@@ -9,7 +9,7 @@ class Game:
         self.running = True
         
     def run(self, command, plrid):
-        commands.execute(
+        return commands.execute(
                 self,
                 command,
                 plrid
