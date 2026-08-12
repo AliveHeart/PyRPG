@@ -1,10 +1,10 @@
 {
-    "hp": 72,
+    "hp": 68,
     "mhp": 100,
     "luck": 0,
-    "xp": 64.0,
-    "lvl": 4,
-    "loc": "Home",
+    "xp": 0,
+    "lvl": 5,
+    "loc": "Town",
     "str": 3,
     "spd": 3,
     "endur": 3,
@@ -18,7 +18,9 @@
         111,
         21131
     ],
-    "honor": -72,
+    "honor": -62.0,
+    "inComb": false,
+    "enemy": {},
     "helm": 0,
     "chest": 0,
     "leg": 0
