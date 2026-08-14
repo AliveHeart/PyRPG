@@ -14,7 +14,8 @@ def execute(game, string, id):
     if data:
         player.load_from_dict(data)
     else:
-        return ["No save slot found!"]
+        loader.create_json_file(str(id), player.to_dict())
+        return ["Created new account! You can now start playing!"]
 
     output = []
 
@@ -36,6 +37,8 @@ def execute(game, string, id):
                 player.current_location = arg[0]
 
                 output.append("You reach the " + arg[0] + ". ")
+            elif arg[0] == player.current_location:
+                output.append("You are already at " + arg[0] + ". ")
             else:
                 output.append("You can't find a way to " + arg[0] + ". ")
         elif action == "fight":
