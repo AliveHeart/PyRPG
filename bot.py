@@ -12,8 +12,8 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-def exe_cmd(command):
-    result = game.game.run(command, 1)#ctx.author.id)
+def exe_cmd(command, id):
+    result = game.game.run(command, id)
     new_text = ""
     for text in result:
         new_text += " " + text
@@ -29,39 +29,39 @@ async def hello(ctx):
 
 @bot.command()
 async def look(ctx):
-    await ctx.send(exe_cmd("look"))
+    await ctx.send(exe_cmd("look", ctx.author.id))
 
 @bot.command()
 async def go(ctx, location: str):
-    await ctx.send(exe_cmd("go " + location))
+    await ctx.send(exe_cmd("go " + location, ctx.author.id))
 
 @bot.command()
 async def inv(ctx):
-    await ctx.send(exe_cmd("inventory"))
+    await ctx.send(exe_cmd("inventory", ctx.author.id))
 
 @bot.command()
 async def fight(ctx, enemy:str):
-    await ctx.send(exe_cmd("fight " + enemy))
+    await ctx.send(exe_cmd("fight " + enemy, ctx.author.id))
 
 @bot.command()
 async def attack(ctx):
-    await ctx.send(exe_cmd("attack"))
+    await ctx.send(exe_cmd("attack", ctx.author.id))
 
 @bot.command()
 async def defend(ctx):
-    await ctx.send(exe_cmd("defend"))
+    await ctx.send(exe_cmd("defend", ctx.author.id))
 
 @bot.command()
 async def run(ctx):
-    await ctx.send(exe_cmd("run"))
+    await ctx.send(exe_cmd("run", ctx.author.id))
 
 @bot.command()
 async def kill(ctx):
-    await ctx.send(exe_cmd("kill"))
+    await ctx.send(exe_cmd("kill", ctx.author.id))
 
 @bot.command()
 async def spare(ctx):
-    await ctx.send(exe_cmd("spare"))
+    await ctx.send(exe_cmd("spare", ctx.author.id))
 
 
 bot.run(TOKEN)
