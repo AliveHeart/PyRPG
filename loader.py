@@ -10,7 +10,6 @@ def load_json(path):
     except FileNotFoundError:
         return False
     except json.JSONDecodeError:
-        # Optional: handle case where file exists but is corrupted
         return False
 
 def save_json(slot, data):
@@ -20,3 +19,15 @@ def save_json(slot, data):
         return True
     except Exception:
         return False
+
+def create_json_file(file_name, data):
+    if not os.path.exists(saves_path):
+        raise FileNotFoundError(f"The folder '{saves_path}' does not exist.")
+
+    file_path = os.path.join(saves_path, f"{file_name}.json")
+
+    with open(file_path, 'w', encoding='utf-8') as json_file:
+        json.dump(data, json_file, indent=4, ensure_ascii=False)
+
+    return file_path
+
