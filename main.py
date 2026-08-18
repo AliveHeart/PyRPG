@@ -6,6 +6,7 @@ while True:
 
     data = loader.load_json("data/save_slots/" + str(plr_slot) + ".json")
     if data:
+        print("Data loaded!")
         break
     else:
         print("No save slot found!")
