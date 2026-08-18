@@ -141,13 +141,14 @@ def kill(player):
     xp = (random.randint(1, 5) * enemy.str * enemy.endur / 2)
 
     player.enemy = {}
-    player.xp += xp
 
+    player.money += enemy.money
+    player.xp += xp
     player.honor += enemy.honor
 
     player.in_combat = False
 
-    return ["The " + enemy.name + " has fallen", "+ " + str(xp) + " xp, " + str(enemy.honor) + "+ honor."]
+    return ["The " + enemy.name + " has fallen", "+ " + str(xp) + " xp, " + str(enemy.honor) + "+ honor, +" + str(enemy.money) + "$"]
 
 def steal(player):
     enemy = SimpleNamespace(**player.enemy)
