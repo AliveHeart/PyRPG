@@ -5,22 +5,22 @@
       "name": "Run Backend Main",
       "type": "debugpy",
       "request": "launch",
-      "module": "backend.core.main",
-      "justMyCode": true
+      "module": "backend.main",
+      "cwd": "${workspaceFolder}"
     },
     {
       "name": "Run Backend App",
       "type": "debugpy",
       "request": "launch",
-      "module": "backend.core.app",
-      "justMyCode": true
+      "module": "backend.app",
+      "cwd": "${workspaceFolder}"
     },
     {
       "name": "Run Backend Bot",
       "type": "debugpy",
       "request": "launch",
-      "module": "backend.utils.bot",
-      "justMyCode": true
+      "module": "backend.bot",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }
