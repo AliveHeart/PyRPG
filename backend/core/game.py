@@ -1,15 +1,16 @@
-import commands, player, world, renderer
+from backend.systems.commands import execute
+from backend.systems.world import World
 
 class Game:
     def __init__(self):
         self.running = True
 
-        self.world = world.World()
+        self.world = World()
         
         self.running = True
         
     def run(self, command, plrid):
-        return commands.execute(
+        return execute(
                 self,
                 command,
                 plrid

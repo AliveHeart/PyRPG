@@ -1,7 +1,7 @@
 import json
 import os
 
-saves_path = "data/save_slots/"
+saves_path = "backend/data/save_slots/"
 
 def load_json(path):
     try:

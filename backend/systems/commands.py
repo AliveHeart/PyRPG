@@ -1,7 +1,10 @@
-import combat, loader, copy, inventory
-from look import look
+import copy
+from backend.core.loader import load_json, create_json_file, save_json
+from backend.systems.inventory import recall
+from backend.systems.combat import act, kill, spare
+from backend.systems.look import look
 from types import SimpleNamespace
-from player import Player
+from backend.systems.player import Player
 
 def execute(game, string, id):
     action = string.split()[0]
@@ -10,11 +13,11 @@ def execute(game, string, id):
 
     player = Player()
 
-    data = loader.load_json("data/save_slots/" + str(id) + ".json")
+    data = load_json("backend/data/save_slots/" + str(id) + ".json")
     if data:
         player.load_from_dict(data)
     else:
-        loader.create_json_file(str(id), player.to_dict())
+        create_json_file(str(id), player.to_dict())
         return ["Created new account! You can now start playing!"]
 
     output = []
@@ -30,7 +33,7 @@ def execute(game, string, id):
             if len(player.inventory) == 0:
                 output.append("Your inventory is empty.")
             else:
-                for item in inventory.recall(player):
+                for item in recall(player):
                     output.append(item)
         elif action == "go":
             if arg[0] in current_location.connections:
@@ -57,18 +60,18 @@ def execute(game, string, id):
                 player.enemy = vars(player.enemy)
         elif player.enemy != {}:
             if action == "kill":
-                returnState = combat.kill(player)
+                returnState = kill(player)
                 output.append(returnState[0])
                 output.append(returnState[1])
             elif action == "spare":
-                returnState = combat.spare(player)
+                returnState = spare(player)
                 output.append(returnState[0])
                 output.append(returnState[1])
 
     else:
         if player.enemy != {}:
             enemy = SimpleNamespace(**player.enemy)
-            condition = combat.act(action , player, enemy)
+            condition = act(action , player, enemy)
 
             output.append(condition[0])
             output.append(condition[1])
@@ -82,7 +85,7 @@ def execute(game, string, id):
     if can_lvl:
         output.append("You leveled up to " + str(player.lvl) + "!")
 
-    loader.save_json(str(id), player.to_dict())
+    save_json(str(id), player.to_dict())
     return output
                 
         

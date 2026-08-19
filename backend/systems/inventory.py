@@ -1,10 +1,10 @@
-import items, items
+from backend.systems.items import get
 
 def recall(player):
     inventory = []
     for item in player.inventory:
         item = str(item)
-        the_item = items.get(item)
+        the_item = get(item)
         if the_item and item[0] == "1":
             inventory.append(the_item[0]["name"] + " x" + the_item[1])
         elif the_item:

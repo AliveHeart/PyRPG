@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import game, loader
+from backend.core.game import game
 
 app = FastAPI()
 

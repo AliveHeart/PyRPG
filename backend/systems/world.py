@@ -1,11 +1,11 @@
-from loader import load_json
-from area import Area
-from entity import Entity
+from backend.core.loader import load_json
+from backend.systems.area import Area
+from backend.systems.entity import Entity
 
 class World:
     def __init__(self):
-        areas = load_json("data/areas.json")
-        entities = load_json("data/entities.json")
+        areas = load_json("backend/data/areas.json")
+        entities = load_json("backend/data/entities.json")
 
         self.areas = {}
         self.entities = {}

@@ -1,4 +1,5 @@
-import random, randomer
+import random
+from backend.utils.randomer import weighted_choice
 from types import SimpleNamespace
 
 def chance_roll(enemy_atr, plr_atr):
@@ -18,7 +19,7 @@ def enemy_attack(enemy, player):
         return ("The " + enemy.name + " attacks you for " + str(enemy.str) + " damage!")
     
 def enemy_descision(enemy, player):
-    attack_weightage = 50 + enemy.arrogance
+    attack_weightage = 80 + enemy.arrogance
     defend_weightage = 35 + enemy.defensive
     surrender_weightage = 35 + enemy.cowardness
 
@@ -47,7 +48,7 @@ def enemy_descision(enemy, player):
     weightage_list = {"attack": attack_weightage, 
                       "defend": defend_weightage, 
                       "surrender": surrender_weightage}
-    descision = randomer.weighted_choice(weightage_list)
+    descision = weighted_choice(weightage_list)
     
     return descision
 

@@ -1,12 +1,12 @@
-import loader
+from backend.core.loader import load_json
 
 data_path = "data/"
 
-items = loader.load_json(data_path + "items.json")
-armor = loader.load_json(data_path + "armour.json")
-material = loader.load_json(data_path + "material.json")
-adjective_armr = loader.load_json(data_path + "adjective-armour.json")
-adjective_wp = loader.load_json(data_path + "adjective-weapon.json")
+items = load_json(data_path + "items.json")
+armor = load_json(data_path + "armour.json")
+material = load_json(data_path + "material.json")
+adjective_armr = load_json(data_path + "adjective-armour.json")
+adjective_wp = load_json(data_path + "adjective-weapon.json")
 
 def get(id):
     item_ids = str(id)
