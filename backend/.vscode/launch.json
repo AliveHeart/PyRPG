@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Backend Main",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "backend.core.main",
+      "justMyCode": true
+    },
+    {
+      "name": "Run Backend App",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "backend.core.app",
+      "justMyCode": true
+    },
+    {
+      "name": "Run Backend Bot",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "backend.utils.bot",
+      "justMyCode": true
+    }
+  ]
+}
