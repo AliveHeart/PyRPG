@@ -1,4 +1,4 @@
-import game, loader
+from backend.core.game import game
 import os
 import discord
 from discord.ext import commands
@@ -13,7 +13,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 def exe_cmd(command, id):
-    result = game.game.run(command, id)
+    result = game.run(command, id)
     new_text = ""
     for text in result:
         new_text += " " + text
